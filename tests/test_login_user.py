@@ -6,7 +6,7 @@ import azure.functions as func
 import azure.cosmos as cosmos
 import config
 #Important for the import name to match the case of the Function folder
-from CreatePrompt import main
+from LoginPlayer import main
 
 class TestFunction(unittest.TestCase):
 
@@ -17,14 +17,14 @@ class TestFunction(unittest.TestCase):
     db_client = client.get_database_client(config.settings['db_id'])
 
     # Create a proxy object to the trees container
-    prompts_container = db_client.get_container_client(config.settings['prompts_container'])
+    users_container = db_client.get_container_client(config.settings['users_container'])
 
-    def test_add_prompt(self):
-        payload = {"text": "What would you do with the coursework this week?", "username": "testest" , "password": "eeee1111"}
+    def test_login_user(self):
+        payload = {"username":  "ggg2" , "password" : "eeee1111"}
 
 
         resp = requests.get(
-                'https://quiplash-dr5g20.azurewebsites.net/api/CreatePrompt?code=zN1tIzEh0EP_JvpkJ2j-xP807eb1_XJQekp4_0PgjULUAzFuHOmYSw==', 
+                'https://quiplash-dr5g20.azurewebsites.net/api/LoginPlayer?code=NIgbXsedB16kw07mT6hBaQnWmV58lM3SEE2D6dwTA6CcAzFuQ0wIsQ==', 
                 json = payload)
 
 

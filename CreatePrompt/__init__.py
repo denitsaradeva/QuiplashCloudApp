@@ -11,40 +11,25 @@ import config
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Inserting a User in progress....')
+    logging.info('Inserting a Prompt in progress....')
 
     # Create the needed proxy objects for CosmosDB account, database, user, and prompt container
     client = cosmos.cosmos_client.CosmosClient(os.environ['db_URI'], os.environ['db_key'] )
 
     # Create a proxy object to the quiplashcw Cosmos DB database
-    # Read reference here: https://learn.microsoft.com/en-us/python/api/azure-cosmos/azure.cosmos.databaseproxy?view=azure-python
     db_client = client.get_database_client(os.environ['db_id'])
 
     # Create a proxy object to the prompts container
-    # Read reference here: https://learn.microsoft.com/en-us/python/api/azure-cosmos/azure.cosmos.containerproxy?view=azure-python
     prompts_container = db_client.get_container_client(os.environ['prompts_container'])
 
     # Create a proxy object to the users container
-    # Read reference here: https://learn.microsoft.com/en-us/python/api/azure-cosmos/azure.cosmos.containerproxy?view=azure-python
     users_container = db_client.get_container_client(os.environ['users_container'])
 
-
     prompt = req.get_json()
+
     username = prompt['username']
-    logging.info(username)
     password = prompt['password']
     text = prompt['text']
-    logging.info(password)
-    logging.info(prompt)
-    logging.info(text)
-
-    # Insert code here to translate from the request with 'tree_id' : int to a JSON with 
-    # 'id' :string so you can insert into trees_container
-
-
-    # Read the documentation of the create_item method and tree
-    # https://learn.microsoft.com/en-us/python/api/azure-cosmos/azure.cosmos.containerproxy?view=azure-python#azure-cosmos-containerproxy-create-item
-    # Reference on Python exception handling: https://docs.python.org/3.9/tutorial/errors.html
 
     try:
         creationQuery = list(prompts_container.query_items(query=("SELECT prompts.text FROM prompts WHERE prompts.username = '{0}'".format(username)), enable_cross_partition_query=True))
@@ -61,25 +46,14 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         elif(len(text) < 20 or len(text) > 100):
             return func.HttpResponse(body = json.dumps({"result": False, "msg": "prompt length is <20 or > 100 characters" }), status_code=400)
 
-        # the right create_item call
-        # If everything went well return the right response according to specification
         prompts_container.create_item(body=prompt)
         logging.info("user created successfully")
         return func.HttpResponse(body = json.dumps({"result" : True, "msg": "OK" }), status_code=200)
     except exceptions.CosmosHttpResponseError as e:
-         #Return the right response according to specification when something goes wrong
-         # Does this exception matches what we need in the specifications
          logging.info("throws cosmos response error")
          logging.info(e.message)
-         pass
-    return func.HttpResponse("", status_code=200)
+         return func.HttpResponse("", status_code=200)
 
-
-    # An alternative to the try-except approach is to query for the item before inserting
-
-
-
-    
 
 
 
