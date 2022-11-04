@@ -13,14 +13,14 @@ class TestFunction(unittest.TestCase):
     # note the config.settings to access configuration defined in config.py
     client = cosmos.cosmos_client.CosmosClient(config.settings['db_URI'], config.settings['db_key'] )
 
-    # Create a proxy object to the treehuggers Cosmos DB database
+    # Create a proxy object to the quilplash Cosmos DB database
     db_client = client.get_database_client(config.settings['db_id'])
 
-    # Create a proxy object to the trees container
+    # Create a proxy object to the users container
     users_container = db_client.get_container_client(config.settings['users_container'])
 
     def test_add_user(self):
-        payload = {"username":  "te1stes22t" , "password" : "eee2e1111"}
+        payload = {"username":  "ivan" , "password" : "denideni"}
 
 
         resp = requests.get(

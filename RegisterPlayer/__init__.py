@@ -26,6 +26,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     username = user['username']
     password = user['password']
     user['id']=username
+    user['add_to_games_played']=0
+    user['add_to_score']=0
 
     try:
         creationQuery = list(users_container.query_items(query=("SELECT * FROM users WHERE users.username = '{0}'".format(username)), enable_cross_partition_query=True))

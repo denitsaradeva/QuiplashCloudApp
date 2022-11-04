@@ -23,9 +23,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     user = req.get_json()
     username = user['username']
-    logging.info(username)
     password = user['password']
-    logging.info(password)
 
     try:
         usernameQuery = list(users_container.query_items(query=("SELECT users.username FROM users WHERE users.username = '{0}'".format(username)), enable_cross_partition_query=True))
