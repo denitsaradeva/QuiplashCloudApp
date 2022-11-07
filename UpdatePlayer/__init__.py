@@ -56,8 +56,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         
         content = json.dumps(usersQuery[0])
         newUser = json.loads(content)
-        newUser["add_to_games_played"] = newUser["add_to_games_played"] + addToGamesPlayed
-        newUser["add_to_score"] = newUser["add_to_score"] + addToScore
+        newUser["games_played"] = newUser["games_played"] + addToGamesPlayed
+        newUser["total_score"] = newUser["total_score"] + addToScore
 
         users_container.upsert_item(newUser)
 

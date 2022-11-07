@@ -26,8 +26,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     username = user['username']
     password = user['password']
     user['id']=username
-    user['add_to_games_played']=0
-    user['add_to_score']=0
+    user['games_played']=0
+    user['total_score']=0
 
     try:
         creationQuery = list(users_container.query_items(query=("SELECT * FROM users WHERE users.username = '{0}'".format(username)), enable_cross_partition_query=True))
@@ -39,7 +39,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             return func.HttpResponse(body = json.dumps({"result": False, "msg": "Password less than 8 characters or more than 24 characters"}), status_code=400)
 
         users_container.create_item(body=user)
-        logging.info("user created successfully")
         return func.HttpResponse(body = json.dumps({"result" : True, "msg": "OK" }), status_code=200)
     except exceptions.CosmosHttpResponseError as e:
          logging.info("throws cosmos response error")

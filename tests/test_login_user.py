@@ -20,7 +20,7 @@ class TestFunction(unittest.TestCase):
     users_container = db_client.get_container_client(config.settings['users_container'])
 
     def test_login_user(self):
-        payload = {"username":  "ggg2" , "password" : "eeee1111"}
+        payload = {"username":  "Deyan" , "password" : "deyandeyan"}
 
 
         resp = requests.get(
