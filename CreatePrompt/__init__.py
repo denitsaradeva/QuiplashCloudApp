@@ -32,19 +32,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     text = prompt['text']
 
     try:
-        logging.info("test7")
         creationQuery = list(prompts_container.query_items(query=("SELECT prompts.text FROM prompts WHERE prompts.username = '{0}'".format(username)), enable_cross_partition_query=True))
-        logging.info("test6")
         userQuery = list(users_container.query_items(query=("SELECT * FROM users WHERE users.username = '{0}' AND users.password = '{1}'".format(username, password)), enable_cross_partition_query=True))
-        logging.info("test5")
         idQuery=list(prompts_container.query_items(query=("SELECT * FROM prompts ORDER BY prompts.id DESC"), enable_cross_partition_query=True))
-        logging.info("test2")
         newId = (int)(idQuery[0].get('id'))+1
-        logging.info("test1")
         texts = [entry.get('text') for entry in creationQuery]
-        logging.info("test3")
         prompt['id']=str(newId)
-        logging.info("test4")
         if(len(userQuery) == 0):
             return func.HttpResponse(body = json.dumps({"result": False, "msg": "bad username or password" }), status_code=400)
         elif(text in texts):
