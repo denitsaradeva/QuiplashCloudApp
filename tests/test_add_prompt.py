@@ -20,7 +20,7 @@ class TestFunction(unittest.TestCase):
     prompts_container = db_client.get_container_client(config.settings['prompts_container'])
 
     def test_add_prompt(self):
-        payload = {"text": "What app you would never code in JavaScript2?", "username": "Maxim" , "password": "deyandeyan"}
+        payload = {"text": "What app you would never program?", "username": "Maxim" , "password": "deyandeyan"}
 
 
         resp = requests.get(
