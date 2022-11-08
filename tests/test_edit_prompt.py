@@ -6,7 +6,7 @@ import azure.functions as func
 import azure.cosmos as cosmos
 import config
 #Important for the import name to match the case of the Function folder
-from CreatePrompt import main
+from UpdatePlayer import main
 
 class TestFunction(unittest.TestCase):
 
@@ -16,15 +16,14 @@ class TestFunction(unittest.TestCase):
     # Create a proxy object to the quilplash Cosmos DB database
     db_client = client.get_database_client(config.settings['db_id'])
 
-    # Create a proxy object to the prompts container
-    prompts_container = db_client.get_container_client(config.settings['prompts_container'])
+    # Create a proxy object to the users container
+    users_container = db_client.get_container_client(config.settings['users_container'])
 
-    def test_add_prompt(self):
-        payload = {"text": "What app you would never code in JavaScript2?", "username": "Maxim" , "password": "deyandeyan"}
-
+    def test_edit_prompt(self):
+        payload = {"id": 10, "text": "What app you would never use one two?", "username" : "Maxim" , "password": "deyandeyan"}
 
         resp = requests.get(
-                'https://quiplash-dr5g20.azurewebsites.net/api/CreatePrompt?code=zN1tIzEh0EP_JvpkJ2j-xP807eb1_XJQekp4_0PgjULUAzFuHOmYSw==', 
+                'https://quiplash-dr5g20.azurewebsites.net/api/EditPrompt?code=8hSy74tMGCSh-X6vq2p_lPQDRZRLya_sr6sopDxigO9CAzFuaQDEKw==', 
                 json = payload)
 
 

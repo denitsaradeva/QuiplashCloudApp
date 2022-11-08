@@ -47,6 +47,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         usersQuery = list(users_container.query_items(query=("SELECT * FROM users WHERE users.username = '{0}'".format(username)), enable_cross_partition_query=True))
         passwordQuery = list(users_container.query_items(query=("SELECT users.password FROM users WHERE users.username = '{0}'".format(username)), enable_cross_partition_query=True))
         
+        dbPassword = ""
         if(len(usersQuery)>0):
             dbPassword=passwordQuery[0].get('password')
         if(len(usersQuery) == 0):

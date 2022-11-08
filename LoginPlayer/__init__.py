@@ -26,15 +26,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     password = user['password']
 
     try:
-        usernameQuery = list(users_container.query_items(query=("SELECT users.username FROM users WHERE users.username = '{0}'".format(username)), enable_cross_partition_query=True))
-        passwordQuery = list(users_container.query_items(query=("SELECT users.password FROM users WHERE users.username = '{0}'".format(username)), enable_cross_partition_query=True))
-        dbUsername=usernameQuery[0].get('username')
-        dbPassword=passwordQuery[0].get('password')
-
-        if(password == dbPassword and username == dbUsername):
-            return func.HttpResponse(body = json.dumps({"result" : True, "msg": "OK" }), status_code=200)
-        else:
+        userQuery = list(users_container.query_items(query=("SELECT * FROM users WHERE users.username = '{0}' AND users.password = '{1}'".format(username, password)), enable_cross_partition_query=True))
+        if(len(userQuery) == 0):
             return func.HttpResponse(body = json.dumps({"result": False, "msg": "Username or password incorrect" }), status_code=400)
+        else:
+            return func.HttpResponse(body = json.dumps({"result" : True, "msg": "OK" }), status_code=200)
+        
     except exceptions.CosmosHttpResponseError as e:
          logging.info("throws cosmos response error")
          logging.info(e.message)
