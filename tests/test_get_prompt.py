@@ -1,3 +1,4 @@
+import logging
 import unittest
 import json
 import requests 
@@ -6,9 +7,11 @@ import azure.functions as func
 import azure.cosmos as cosmos
 import config
 #Important for the import name to match the case of the Function folder
-from DeletePrompt import main
+from GetPrompts import main
+from unittest import TestCase
 
 class TestFunction(unittest.TestCase):
+    TestCase.maxDiff = None
 
     # note the config.settings to access configuration defined in config.py
     client = cosmos.cosmos_client.CosmosClient(config.settings['db_URI'], config.settings['db_key'] )
@@ -19,12 +22,12 @@ class TestFunction(unittest.TestCase):
     # Create a proxy object to the users container
     users_container = db_client.get_container_client(config.settings['users_container'])
 
-    def test_delete_prompt(self):
-        payload = {"id" : 6, "username" : "testest" , "password": "eeee1111"}
+    def test_get_prompts(self):
+        # payload = {"players" : ["Deyan",  "Maxim"]}
+        payload = {"prompts" : 2}
 
         resp = requests.get(
-                'https://quiplash-dr5g20.azurewebsites.net/api/DeletePrompt?code=VbIzUyYvfek20s548mX9vGRyUQ5-831vEeEBOTwTAAgOAzFut0BV6Q==', 
+                'https://quiplash-dr5g20.azurewebsites.net/api/GetPrompts?code=FOPUNUXK_f4W9DSuzdu-1HOrNYXvYGOnO8dpv0sv8GNyAzFuYk_afA==', 
                 json = payload)
 
-
-        self.assertEqual({"result" : True, 'msg' : 'OK'}, resp.json())
+        self.assertEqual({'result': True, 'msg': [{"text" : "What app you would never crash ever?", "username": "Deyan", "id": 8}, {"text" : "What app you would never program?", "username": "Maxim", "id": 9 }]}, resp.json())
