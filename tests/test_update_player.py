@@ -23,7 +23,7 @@ class TestFunction(unittest.TestCase):
         payload = {"username": "Maxim" , "add_to_score": 40, "password": "deyandeyan"}
 
         resp = requests.get(
-                'https://quiplash-dr5g20.azurewebsites.net/api/UpdatePlayer?code=1BPLgOhBJITlT38I06ShEqKu6D3GA2k0JeFjMeRWiYCxAzFuENiFfg==', 
+                'https://quiplash-dr5g20.azurewebsites.net/api/player/update?code=1BPLgOhBJITlT38I06ShEqKu6D3GA2k0JeFjMeRWiYCxAzFuENiFfg==', 
                 json = payload)
 
 

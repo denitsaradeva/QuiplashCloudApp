@@ -20,11 +20,10 @@ class TestFunction(unittest.TestCase):
     users_container = db_client.get_container_client(config.settings['users_container'])
 
     def test_add_user(self):
-        payload = {"username":  "testest" , "password" : "eeee1111"}
-
-
+        payload = {"username":  "testEest" , "password" : "eeee1111"}
+        
         resp = requests.get(
-                'https://quiplash-dr5g20.azurewebsites.net/api/RegisterPlayer?code=OKEPKy72xpY7eJrsZSHE6_dmUGoT6zDLC9XOttGt2dLSAzFu98i0pQ==', 
+                'https://quiplash-dr5g20.azurewebsites.net/api/player/register?code=OKEPKy72xpY7eJrsZSHE6_dmUGoT6zDLC9XOttGt2dLSAzFu98i0pQ==', 
                 json = payload)
 
 

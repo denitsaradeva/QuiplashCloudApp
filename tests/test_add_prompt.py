@@ -23,7 +23,7 @@ class TestFunction(unittest.TestCase):
         payload = {"text": "What app you would never get up in the middle of the night?", "username": "Deyan" , "password": "deyandeyan"}
 
         resp = requests.get(
-                'https://quiplash-dr5g20.azurewebsites.net/api/CreatePrompt?code=zN1tIzEh0EP_JvpkJ2j-xP807eb1_XJQekp4_0PgjULUAzFuHOmYSw==', 
+                'https://quiplash-dr5g20.azurewebsites.net/api/prompt/create?code=zN1tIzEh0EP_JvpkJ2j-xP807eb1_XJQekp4_0PgjULUAzFuHOmYSw==', 
                 json = payload)
 
 

@@ -23,7 +23,7 @@ class TestFunction(unittest.TestCase):
         payload = {"id": 10, "text": "What app you would never use one two?", "username" : "Maxim" , "password": "deyandeyan"}
 
         resp = requests.get(
-                'https://quiplash-dr5g20.azurewebsites.net/api/EditPrompt?code=8hSy74tMGCSh-X6vq2p_lPQDRZRLya_sr6sopDxigO9CAzFuaQDEKw==', 
+                'https://quiplash-dr5g20.azurewebsites.net/api/prompt/edit?code=8hSy74tMGCSh-X6vq2p_lPQDRZRLya_sr6sopDxigO9CAzFuaQDEKw==', 
                 json = payload)
 
 

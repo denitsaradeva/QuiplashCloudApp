@@ -24,7 +24,7 @@ class TestFunction(unittest.TestCase):
         payload = {"top" : 2 }
 
         resp = requests.get(
-                'https://quiplash-dr5g20.azurewebsites.net/api/PlayerLeaderboard?code=4krsBUdHrYwrX4Lg4tN2rDrZgZPbN-bEdeRKVetVMs95AzFuKC4WVg==', 
+                'https://quiplash-dr5g20.azurewebsites.net/api/player/leaderboard?code=4krsBUdHrYwrX4Lg4tN2rDrZgZPbN-bEdeRKVetVMs95AzFuKC4WVg==', 
                 json = payload)
 
         self.assertEqual({'result': True, 'msg': [{"username" : "Maxim", "score" : 90, "games_played": 40}, {"username" : "Deyan", "score" : 50, "games_played": 10}]}, resp.json())

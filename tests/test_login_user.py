@@ -24,7 +24,7 @@ class TestFunction(unittest.TestCase):
 
 
         resp = requests.get(
-                'https://quiplash-dr5g20.azurewebsites.net/api/LoginPlayer?code=NIgbXsedB16kw07mT6hBaQnWmV58lM3SEE2D6dwTA6CcAzFuQ0wIsQ==', 
+                'https://quiplash-dr5g20.azurewebsites.net/api/player/login?code=NIgbXsedB16kw07mT6hBaQnWmV58lM3SEE2D6dwTA6CcAzFuQ0wIsQ==', 
                 json = payload)
 
 

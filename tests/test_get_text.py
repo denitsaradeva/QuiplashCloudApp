@@ -26,7 +26,7 @@ class TestFunction(unittest.TestCase):
         payload = {"word": "javascript", "exact" : True}
 
         resp = requests.get(
-                'https://quiplash-dr5g20.azurewebsites.net/api/GetText?code=7g4N5YfA_Dct9qN7dfv-LQaGvI6Mo94k5m7XxVspQcdFAzFuahKajg==', 
+                'https://quiplash-dr5g20.azurewebsites.net/api/prompts/getText?code=7g4N5YfA_Dct9qN7dfv-LQaGvI6Mo94k5m7XxVspQcdFAzFuahKajg==', 
                 json = payload)
 
         self.assertEqual({'result': True, 'msg': [{'text': 'What app you would never code in JavaScript?', 'username': 'testest', 'id': 1}]}, resp.json())

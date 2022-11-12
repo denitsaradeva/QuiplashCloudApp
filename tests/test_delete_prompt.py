@@ -23,7 +23,7 @@ class TestFunction(unittest.TestCase):
         payload = {"id" : 6, "username" : "testest" , "password": "eeee1111"}
 
         resp = requests.get(
-                'https://quiplash-dr5g20.azurewebsites.net/api/DeletePrompt?code=VbIzUyYvfek20s548mX9vGRyUQ5-831vEeEBOTwTAAgOAzFut0BV6Q==', 
+                'https://quiplash-dr5g20.azurewebsites.net/api/prompt/delete?code=VbIzUyYvfek20s548mX9vGRyUQ5-831vEeEBOTwTAAgOAzFut0BV6Q==', 
                 json = payload)
 
 

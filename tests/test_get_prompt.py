@@ -27,7 +27,7 @@ class TestFunction(unittest.TestCase):
         payload = {"prompts" : 2}
 
         resp = requests.get(
-                'https://quiplash-dr5g20.azurewebsites.net/api/GetPrompts?code=FOPUNUXK_f4W9DSuzdu-1HOrNYXvYGOnO8dpv0sv8GNyAzFuYk_afA==', 
+                'https://quiplash-dr5g20.azurewebsites.net/api/prompts/get?code=FOPUNUXK_f4W9DSuzdu-1HOrNYXvYGOnO8dpv0sv8GNyAzFuYk_afA==', 
                 json = payload)
 
         self.assertEqual({'result': True, 'msg': [{"text" : "What app you would never crash ever?", "username": "Deyan", "id": 8}, {"text" : "What app you would never program?", "username": "Maxim", "id": 9 }]}, resp.json())
