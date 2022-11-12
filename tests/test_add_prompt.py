@@ -20,7 +20,7 @@ class TestFunction(unittest.TestCase):
     prompts_container = db_client.get_container_client(config.settings['prompts_container'])
 
     def test_add_prompt(self):
-        payload = {"text": "What app you would never get up in the middle?", "username": "Deyan" , "password": "deyandeyan"}
+        payload = {"text": "What app you would never get up in the middle of the night?", "username": "Deyan" , "password": "deyandeyan"}
 
         resp = requests.get(
                 'https://quiplash-dr5g20.azurewebsites.net/api/CreatePrompt?code=zN1tIzEh0EP_JvpkJ2j-xP807eb1_XJQekp4_0PgjULUAzFuHOmYSw==', 

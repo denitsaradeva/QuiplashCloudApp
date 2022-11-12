@@ -9,7 +9,8 @@
       "methods": [
         "get",
         "post"
-      ]
+      ],
+      "route":"prompts/getText"
     },
     {
       "type": "http",
